@@ -3,11 +3,13 @@ import torchaudio
 import torch.nn.functional as F
 
 from typing import Callable, List
+from pathlib import Path
 
 import warnings
 import numpy as np
 import onnxruntime
 
+project_path = Path(__file__).parent
 
 languages = ['ru', 'en', 'de', 'es']
 
@@ -42,7 +44,7 @@ def validate_input(x, sr):
 
 
 class VoiceActivityDetection:
-    def __init__(self, samplerate: int, onnx_filepath: str, num_threads: int):
+    def __init__(self, samplerate: int, onnx_filepath: str = f'{project_path}/files/silero_vad.onnx', num_threads: int = 1):
         self.samplerate = samplerate
         self.session = get_onnx_inference_session(onnxruntime.SessionOptions(), onnx_filepath, on_cpu=True, num_threads=num_threads)
         self.set_params_to_initial_values()

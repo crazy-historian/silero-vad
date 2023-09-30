@@ -9,7 +9,7 @@ with open(README, encoding='utf-8') as f:
 
 setup(
     name='silero_vad_simplified',
-    version='0.1.0',    
+    version='0.1.1',    
     description='This is a fork of silero-vad repository with a bit refactored code for simpler installation.',
     long_description=long_description,
     license='MIT License',
